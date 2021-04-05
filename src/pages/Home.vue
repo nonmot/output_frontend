@@ -1,12 +1,14 @@
 <template>
     <div>
         <v-container>
-            <router-link
-                to="group/create"
-                class="group_create"
-            >
-                <v-btn>グループ作成</v-btn>
-            </router-link>
+            <div class="buttons">
+                <router-link
+                    to="group/create"
+                    class="group_create"
+                >
+                    <v-btn>グループ作成</v-btn>
+                </router-link>
+            </div>
             <div class="group_list">
                 <v-card
                     hover
@@ -60,13 +62,14 @@
         padding: 10px;
     }
 
-    .group_create {
-        float: right;
+    .buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 20px;
     }
 
-    .group_create::after {
-        display: block;
-        content: "";
-        clear: both;
+    .group_create {
+        text-decoration: none;
+        color: inherit;
     }
 </style>
