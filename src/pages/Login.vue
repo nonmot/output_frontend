@@ -12,6 +12,7 @@
                     label="パスワード"
                     type="password"
                     v-model="form.password"
+                    autocomplete="on"
                 ></v-text-field>
                 <v-btn
                     type="submit"

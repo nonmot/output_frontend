@@ -17,9 +17,7 @@ const authModule = {
         isLoggedIn: state => state.isLoggedIn,
     },
     mutations: {
-        set(state, payload) {
-            state.name = payload.user.name
-            state.email = payload.user.email
+        set(state) {
             state.isLoggedIn = true
         },
         clear(state) {
@@ -30,18 +28,17 @@ const authModule = {
     },
     actions: {
         login(context, payload) {
-            return api.post('/sign_in', {
+            return api.post('/auth/sign_in', {
                 'email': payload.email,
                 'password': payload.password
             })
             .then(response => {
-                console.log(response)
                 localStorage.setItem('access-token', response.headers['access-token'])
                 localStorage.setItem('token-type', response.headers['token-type'])
                 localStorage.setItem('client', response.headers['client'])
                 localStorage.setItem('expiry', response.headers['expiry'])
                 localStorage.setItem('uid', response.headers['uid'])
-                context.commit('set', {user: response.data.data})
+                context.commit('set')
                 return response.data
             })
         },
@@ -52,6 +49,10 @@ const authModule = {
             localStorage.removeItem('expiry')
             localStorage.removeItem('uid')
             context.commit('clear')
+        },
+        reload(context) {
+            context.commit('set')
+            
         }
     }
 }

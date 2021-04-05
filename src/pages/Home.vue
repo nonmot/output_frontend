@@ -1,28 +1,36 @@
 <template>
     <div>
         <v-container>
-            <v-card
-                hover
-                v-for="group in groups"
-                :key="group.id"
-                :to="{name: 'groupDetail', params: {id: group.id}}"
+            <router-link
+                to="group/create"
+                class="group_create"
             >
-                <div class="mb-5">
-                    <v-card-title>
-                        {{ group.title }}
-                    </v-card-title>
-                    <v-card-text
-                        v-html="group.introduction"
-                    >
-                    </v-card-text>
-                </div>
-            </v-card>
+                <v-btn>グループ作成</v-btn>
+            </router-link>
+            <div class="group_list">
+                <v-card
+                    hover
+                    v-for="group in groups"
+                    :key="group.id"
+                    :to="{name: 'groupDetail', params: {id: group.id}}"
+                >
+                    <div class="mb-5">
+                        <v-card-title>
+                            {{ group.title }}
+                        </v-card-title>
+                        <v-card-text
+                            v-html="group.introduction"
+                        >
+                        </v-card-text>
+                    </div>
+                </v-card>
+            </div>
         </v-container>
     </div>
 </template>
 
 <script>
-    import axios from 'axios';
+    import api from '../services/api'
 
     export default {
         data() {
@@ -33,12 +41,12 @@
         },
         methods: {
             getAllGroups() {
-                axios.get('http://127.0.0.1:3000/api/groups')
+                api.get('api/groups')
                 .then(response => {
                     this.groups = response.data
                     this.group_id = response.data.id
                 })
-            }
+            },
         },
         created() {
             this.getAllGroups()
@@ -50,5 +58,15 @@
     .v-card {
         margin-bottom: 20px;
         padding: 10px;
+    }
+
+    .group_create {
+        float: right;
+    }
+
+    .group_create::after {
+        display: block;
+        content: "";
+        clear: both;
     }
 </style>
