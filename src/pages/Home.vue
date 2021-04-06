@@ -38,15 +38,13 @@
         data() {
             return {
                 groups: [],
-                group_id: 0,
             }
         },
         methods: {
             getAllGroups() {
                 api.get('api/groups')
                 .then(response => {
-                    this.groups = response.data
-                    this.group_id = response.data.id
+                    this.groups = response.data.groups
                 })
             },
         },
