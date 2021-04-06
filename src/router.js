@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import GroupDetail from './pages/GroupDetail'
 import GroupCreate from './pages/GroupCreate'
 import Login from './pages/Login'
+import SignUp from './pages/SignUp'
 
 Vue.use(Router)
 
@@ -32,6 +33,10 @@ const router = new Router({
             path: '/login',
             component: Login,
         },
+        {
+            path: '/sign_up',
+            component: SignUp
+        }
     ]
 })
 

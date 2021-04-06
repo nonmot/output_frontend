@@ -17,10 +17,22 @@
             >
                 {{ useremail }}
             </p>
-            <router-link
+            <div
                 v-if="!isLoggedIn"
-                to="/login"
-            >ログイン</router-link>
+            >
+                <router-link
+                    to="/login"
+                    class="button"
+                >
+                    <v-btn>ログイン</v-btn>
+                </router-link>
+                <router-link
+                    to="/sign_up"
+                    class="button"
+                >
+                    <v-btn>新規登録</v-btn>
+                </router-link>
+            </div>
             <v-btn
                 v-else
                 @click="logout"
@@ -51,6 +63,10 @@ export default {
 <style scoped>
     .title {
         color: inherit;
+        text-decoration: none;
+    }
+
+    .button {
         text-decoration: none;
     }
 </style>

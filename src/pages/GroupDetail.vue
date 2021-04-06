@@ -8,7 +8,7 @@
                     @click.prevent="deleteGroup"
                 >削除</v-btn>
             </div>
-            <small>{{ user.uid }}</small>
+            <small>{{ user.name }}</small>
             <p v-html="group.introduction"></p>
         </v-container>
     </div>
